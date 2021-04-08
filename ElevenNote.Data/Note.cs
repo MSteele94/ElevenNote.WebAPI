@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,6 +12,10 @@ namespace ElevenNote.Data
     {
         [Key]
         public int NoteId { get; set; }
+        [ForeignKey(nameof(Category))]
+        public int CategoryId { get; set; }
+        public virtual Category Category { get; set; }
+        
         [Required]
         //GUID is Globally Unique ID
         //32 digit hexadecimals grouped in chunks of 8-4-4-12

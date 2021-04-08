@@ -15,6 +15,7 @@ namespace ElevenNote.Services
         public NoteService(Guid userId)
         {
             _userId = userId;
+            
         }
         public bool CreateNote(NoteCreate model)
         {
@@ -22,6 +23,7 @@ namespace ElevenNote.Services
                 new Note()
                 {
                     OwnerId = _userId,
+                    CategoryId = model.CategoryId,
                     Title = model.Title,
                     Content = model.Content,
                     CreatedUtc = DateTimeOffset.Now
@@ -30,6 +32,7 @@ namespace ElevenNote.Services
             using (var ctx = new ApplicationDbContext())
             {
                 ctx.Notes.Add(entity);
+
                 return ctx.SaveChanges() == 1;
             }
         }
@@ -45,6 +48,7 @@ namespace ElevenNote.Services
                     new NoteDetail
                     {
                         NoteId = entity.NoteId,
+                        Name = entity.Category.Name,
                         Title = entity.Title,
                         Content = entity.Content,
                         CreatedUtc = entity.CreatedUtc,
