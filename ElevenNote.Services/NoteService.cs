@@ -49,6 +49,7 @@ namespace ElevenNote.Services
                     {
                         NoteId = entity.NoteId,
                         Name = entity.Category.Name,
+                        CategoryId = entity.CategoryId,
                         Title = entity.Title,
                         Content = entity.Content,
                         CreatedUtc = entity.CreatedUtc,
